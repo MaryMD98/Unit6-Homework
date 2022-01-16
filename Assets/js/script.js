@@ -64,6 +64,12 @@ function getONECALLWeatehr(){
               console.log("humidity " + DataResponse.current.humidity);
               console.log("wind Speed " + DataResponse.current.wind_speed);
               console.log("UV INdex " + DataResponse.current.uvi);
+
+              console.log("data of day + 1");
+              onsole.log("data of day + 2");
+              onsole.log("data of day + 3");
+              onsole.log("data of day + 4");
+              onsole.log("data of day + 5");
              
               
           });
