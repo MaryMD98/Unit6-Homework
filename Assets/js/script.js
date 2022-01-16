@@ -13,7 +13,7 @@ function getcurrentWeatehr(){
 
           response.json()
             .then(function(data) {
-                console.log("data in currentweather data ")
+                console.log("data in getcurrentWeatehr data ")
                 console.log(data);
               // save data to global parameter to use in other functions
               DataResponse = data;
@@ -40,22 +40,31 @@ function getcurrentWeatehr(){
 
 getcurrentWeatehr();
 
+var latitude = '51.5085';
+var longitude = '-0.1257';
+
 //https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid={API key}
 
 function getONECALLWeatehr(){
-    fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid={API key}')
+    fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&exclude=hourly,minutely,alerts&units=imperial&appid=' + openWeatherAPI)
     
       .then(function(response){
         if (response.ok){
 
           response.json()
             .then(function(data) {
-                console.log("data in currentweather data ")
+                console.log("data in getONECALLWeatehr data ")
                 console.log(data);
               // save data to global parameter to use in other functions
               DataResponse = data;
 
               console.log("data sucessfuls accessed");
+              console.log("icon " + DataResponse.current.weather[0].icon);
+              console.log("Temperature " + DataResponse.current.temp);
+              console.log("humidity " + DataResponse.current.humidity);
+              console.log("wind Speed " + DataResponse.current.wind_speed);
+              console.log("UV INdex " + DataResponse.current.uvi);
+             
               
           });
         } else {
