@@ -1,47 +1,43 @@
 var openWeatherAPI = "7624e64d3821f1c4e9cbd917e59c3d78";
-var placeTOsearch = 'London,uk';
-var DataResponse;
 
+// city name will be set with the name of the user input** waitin gfor event button
+var cityName = "Austin";
+// locationResponse will be set after the call to gather lat and lon is succesful
+var locationResponse;
+//nae of city will be displaied on the page
+var DisCityName;
+// save lat and lon to use in next API call
+var latitude;
+var longitude;
 
-// function getcurrentWeatehr(){
-//     fetch('http://api.openweathermap.org/data/2.5/weather?q=' + placeTOsearch + '&APPID=' + openWeatherAPI)
+//function will get latitude and longitude of the location searched by user
+function getLocation(){
+    fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + openWeatherAPI)
     
-//       .then(function(response){
-//         if (response.ok){
+      .then(function(response){
+        if (response.ok){
 
-//           response.json()
-//             .then(function(data) {
-//                 console.log("data in getcurrentWeatehr data ")
-//                 console.log(data);
-//               // save data to global parameter to use in other functions
-//               DataResponse = data;
+          response.json()
+            .then(function(data) {
+              // save data to global parameter to use in other functions
+              locationResponse = data;
 
-//               console.log("data sucessfuls accessed");
-//               console.log("icon " + DataResponse.weather[0].icon);
-//               var temp = DataResponse.main.temp;
-//               temp = temp - 273.15;
-//               temp = temp * 1.8;
-//               var tempF = temp + 32;
-//               tempF = Math.round(tempF);
-//               console.log("Temperature " + tempF);
-//               console.log("humidity " + DataResponse.main.humidity);
-//               console.log("wind Speed " + DataResponse.wind.speed);
-//               console.log("latitude " + DataResponse.coord.lat);
-//               console.log("longitude " + DataResponse.coord.lon);
-              
-//           });
-//         } else {
-//           console.log("error");
-//         }
-//       })
-// }
+                // save lat and lon to use in next call
+                latitude = locationResponse[0].lat;
+                longitude = locationResponse[0].lon;
+                DisCityName = locationResponse[0].name;
+                getONECALLWeatehr();
+          });
+        } else {
+          console.log("ERROR: Location submited is not correct. Please try again");
+        }
+      })
+}
 
-// getcurrentWeatehr();
+getLocation();
 
-var latitude = '51.5085';
-var longitude = '-0.1257';
-
-//https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid={API key}
+//save a copy of the data returned in one call
+var DataResponse;
 
 function getONECALLWeatehr(){
     fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&exclude=hourly,minutely,alerts&units=imperial&appid=' + openWeatherAPI)
@@ -51,12 +47,23 @@ function getONECALLWeatehr(){
 
           response.json()
             .then(function(data) {
-                console.log("data in getONECALLWeatehr data ")
-                console.log(data);
               // save data to global parameter to use in other functions
               DataResponse = data;
 
-              console.log("data sucessfuls accessed");
+              // display the weather
+              displayWeather();
+          });
+        } else {
+          console.log("ERROR: No weather information available for the location submitted. Please try again");
+        }
+      })
+}
+
+//
+// function will display the data from the call on the page
+function displayWeather(){
+
+                 console.log("data sucessfuls accessed");
               console.log("icon " + DataResponse.current.weather[0].icon);
               console.log("Temperature " + DataResponse.current.temp);
               console.log("humidity " + DataResponse.current.humidity);
@@ -78,13 +85,5 @@ function getONECALLWeatehr(){
               console.log("data of day + 3 *********");
               console.log("data of day + 4");
               console.log("data of day + 5");
-             
-              
-          });
-        } else {
-          console.log("error");
-        }
-      })
-}
 
-getONECALLWeatehr();
+}
