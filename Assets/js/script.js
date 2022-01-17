@@ -76,11 +76,10 @@ function displayWeather(){
     // create elements
     var cityNamEl = document.createElement('h3');
     var iconEl = document.createElement('img');
-    var displayRow = document.createElement('ul');
-    var TemperatureEl = document.createElement('ol');
-    var WindEl = document.createElement('ol');
-    var HumidityEl = document.createElement('ol');
-    var uvIndexEl = document.createElement('ol');
+    var TemperatureEl = document.createElement('p');
+    var WindEl = document.createElement('p');
+    var HumidityEl = document.createElement('p');
+    var uvIndexEl = document.createElement('p');
     var temp;
 
     console.log("display current weather");
@@ -105,13 +104,8 @@ function displayWeather(){
     uvIndexEl.textContent = uvIndex + temp;
 
     // appends to display on page
-    displayRow.append(
-        TemperatureEl,
-        WindEl,
-        HumidityEl,
-        uvIndexEl);
-
-    DisplayCurrent.append(cityNamEl,iconEl,displayRow);
+    DisplayCurrent.append(cityNamEl,iconEl,TemperatureEl,WindEl,HumidityEl,uvIndexEl);
+    //display 5 days weather
     display5DayWeather();
 }
 
@@ -122,7 +116,6 @@ function display5DayWeather(){
      // create elements 
     var datetoDis = document.createElement('h3');
     var iconEl = document.createElement('img');
-    var displayRow = document.createElement('ul');
     var TemperatureEl = document.createElement('p');
     var WindEl = document.createElement('p');
     var HumidityEl = document.createElement('p');
