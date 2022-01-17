@@ -1,3 +1,16 @@
 /* body{
     background:linear-gradient(to right, #7d3c91, #775292, #866092, #936f9e,#9b85a1 );
 } */
+
+.container {
+    padding: 5rem;
+}
+
+.display-today {
+    border: white solid 2px;
+    /* background-color: #0a557c; */
+}
+.display-5days {
+    border: white solid 2px;
+    /* background-color: #329dd6; */
+}

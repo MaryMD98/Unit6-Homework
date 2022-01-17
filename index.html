@@ -12,31 +12,65 @@
 </head>
 <body>
     <header id= "title">
-        <h1 id= "titleWeather">Weather Dashboard</h1>      
+        <div>
+            <h1 id= "titleWeather">Weather Dashboard</h1>      
+        </div>
     </header>
 
-    <main>       
-          
-        <div class="container">
-            <form class="col s3 section weather-search">
-                <h2>Search for a City</h2>
-                <button></button>
-            </form>
-                
-            <div class="col s9 section msg-display">
-                <section class="row display-today">
-                </section>
+    <main class="container">       
+        <div class="row">
+            <div class="col input-field offset-s3">
+                <input placeholder='Ex: "Austin" or 78712' id="location" type="text" class="validate">
+                <label for="location">Location</label>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                <!-- list of saved location -->
+                <div class="collection"></div>   
+            </div>
+            
+            <div class="col section msg-display">
+                <!-- <div class="row">
+                    <div class = "display-today"></div>
+                </div>
 
-                <section class="row display-5days">
-                    <!-- <div class="col day1">
-                    </div>
-                    <div class="col day2"></div>
+                <div class="row ">
+                    <div class="col ">
+                        <div class="display-5days"></div>
+                    </div> -->
+                    <!-- <div class="col day2"></div>
                     <div class="col day3"></div>
                     <div class="col day4"></div>
                     <div class="col day5"></div> -->
-                </section>
+
+             <!-- start of example      -->
+                    <div class="card w-75">
+                        <div class="card-body display-today">
+                            <h5 class="card-title">card row</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="card">
+                            <div class="card-body display-5days ">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                              <div class="card-body">
+                              </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- end of example -->
+
+                </div>
 
             </div>
+
         </div>
     </main>
 

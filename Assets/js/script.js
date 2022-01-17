@@ -68,23 +68,21 @@ var mph = " MPH";
 var persentageIcon = "%";
 var fahrenheit = "°F  ";
 var icon;
-//current day display
-var DisplayCurrent = document.querySelector('.display-today');
-// next 5 days display
-var Display5day = document.querySelector('.display-5days');
-// create elements
-var cityNamEl = document.createElement('h3');
-var datetoDis = document.createElement('h3');
-var iconEl = document.createElement('img');
-var displayRow = document.createElement('ul');
-var TemperatureEl = document.createElement('ol');
-var WindEl = document.createElement('ol');
-var HumidityEl = document.createElement('ol');
-var uvIndexEl = document.createElement('ol');
 
 // function will display the data from the call on the page
 function displayWeather(){
+    //current day display
+    var DisplayCurrent = document.querySelector('.display-today');
+    // create elements
+    var cityNamEl = document.createElement('h3');
+    var iconEl = document.createElement('img');
+    var displayRow = document.createElement('ul');
+    var TemperatureEl = document.createElement('ol');
+    var WindEl = document.createElement('ol');
+    var HumidityEl = document.createElement('ol');
+    var uvIndexEl = document.createElement('ol');
     var temp;
+
     console.log("display current weather");
     //display current dataon page
     // display city name and current date
@@ -117,13 +115,23 @@ function displayWeather(){
     display5DayWeather();
 }
 
+//function to display for 5 days
 function display5DayWeather(){
+    // next 5 days display
+    var Display5day = document.querySelector('.display-5days');
+     // create elements 
+    var datetoDis = document.createElement('h3');
+    var iconEl = document.createElement('img');
+    var displayRow = document.createElement('ul');
+    var TemperatureEl = document.createElement('p');
+    var WindEl = document.createElement('p');
+    var HumidityEl = document.createElement('p');
     var temp;
     var temp2;
         console.log("display 5 days of weather");
     //display 5 days
     // display date
-    // datetoDis = ;
+    datetoDis = "monday";
     // display icon        
     icon = DataResponse.daily[1].weather[0].icon;
     temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
@@ -140,12 +148,12 @@ function display5DayWeather(){
     HumidityEl.textContent = Humidity + temp + persentageIcon;
   
     // appends to display on page
-    displayRow.appendChild(
-        TemperatureEl,
-        WindEl,
-        HumidityEl);
+    // displayRow.append(
+    //     TemperatureEl,
+    //     WindEl,
+    //     HumidityEl);
 
-    Display5day.appendChild(iconEl,displayRow);
+    Display5day.append(datetoDis,iconEl,TemperatureEl,WindEl,HumidityEl);
 
             //   console.log("data of day + 2 *********");
             //   console.log("icon " + DataResponse.daily[2].weather[0].icon);
