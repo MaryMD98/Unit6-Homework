@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="Assets/css/style.css">
 
     <title>Weather Dashboard</title>
@@ -14,35 +15,36 @@
         <h1 id= "titleWeather">Weather Dashboard</h1>      
     </header>
 
-    <main>
-        <h2>Search for a City</h2>
-        <div class="container center-align">
-            
+    <main>       
           
-    <div class="row">
-        <div class="col s12 section visibility">
-            <h3 class="bannerText">hello</h3>
+        <div class="container">
+            <form class="col s3 section weather-search">
+                <h2>Search for a City</h2>
+                <button></button>
+            </form>
+                
+            <div class="col s9 section msg-display">
+                <section class="row display-today">
+                    <h2>display current day</h2>
+                    <button></button>
+                </section>
+
+                <section class="row display-5days">
+                    <h3>5 day display</h3>
+                    <div class="col day1">
+                        <button></button>
+                    </div>
+                    <div class="col day2"></div>
+                    <div class="col day3"></div>
+                    <div class="col day4"></div>
+                    <div class="col day5"></div>
+                </section>
+
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col s3 section weather"></div>
-        <div class="col s9 section available-bodies">
-
-                <!-- <div class="card horizontal">
-                  <div class="card-image">
-                    <img src="assets/img/planets/Mars.png">
-                  </div>
-                  <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.</p>
-                  </div>
-                </div> -->
-        </div>
-    </div>
-
-
-
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="Assets/js/script.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 var openWeatherAPI = "7624e64d3821f1c4e9cbd917e59c3d78";
 
 // city name will be set with the name of the user input** waitin gfor event button
-var cityName = "Austin";
+var cityName = "london";
 // locationResponse will be set after the call to gather lat and lon is succesful
 var locationResponse;
 //nae of city will be displaied on the page
@@ -62,36 +62,67 @@ function getONECALLWeatehr(){
 // global parameters used on weather display
 var Wind = "Wind: ";
 var Humidity = "Humidity: ";
-var Rain = "Chance of Rain: ";
-var sckyCondition = "SKY Condition: ";
-var mph = " mph";
+var uvIndex = "UV Index: ";
+var Temperature = "Temp: ";
+var mph = " MPH";
 var persentageIcon = "%";
-var icon = "http:";
-//
-var weatherDisplay = document.querySelector('.weather');
+var fahrenheit = "°F";
+var icon;
+//current day display
+var DisplayCurrent = document.querySelector('.display-today');
+// next 5 days display
+var Display5day = document.querySelector('.display-5days');
+// create elements
+var cityNamEl = document.createElement('h3');
 var iconEl = document.createElement('img');
-var projectRow = document.createElement('ul');
+var displayRow = document.createElement('ul');
 var TemperatureEl = document.createElement('li');
-var TemperatureEl2 = document.createElement('li');
 var WindEl = document.createElement('li');
-var RainEl = document.createElement('li');
 var HumidityEl = document.createElement('li');
-var skyConditionEl = document.createElement('li');
+var uvIndexEl = document.createElement('li');
 
 // function will display the data from the call on the page
 function displayWeather(){
     var temp;
-                 console.log("data sucessfuls accessed");
-              console.log("icon " + DataResponse.current.weather[0].icon);
-              temp = DataResponse.current.weather[0].icon;
-              iconEl.src = icon + temp;
-              console.log("Temperature " + DataResponse.current.temp);
-              console.log("humidity " + DataResponse.current.humidity);
-              console.log("wind Speed " + DataResponse.current.wind_speed);
-              console.log("UV INdex " + DataResponse.current.uvi);
+        
+    //display current dataon page
+    // display city name and current date
+    cityNamEl = DisCityName;
+    // display icon        
+    icon = DataResponse.current.weather[0].icon;
+    temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    iconEl.src = temp;
+    // display temperature
+    temp = DataResponse.current.temp;
+    TemperatureEl.textContent = Temperature + temp + fahrenheit;
+    // display wind speed
+    temp = DataResponse.current.wind_speed;
+    WindEl.textContent = temp + mph;
+    // display Humidity
+    temp = DataResponse.current.humidity;
+    HumidityEl.textContent = temp + persentageIcon;
+    //display uv index
+    temp = DataResponse.current.uvi;
+    uvIndexEl.textContent = temp;
+
+    // appends to display on page
+    displayRow.append(
+        TemperatureEl,
+        WindEl,
+        HumidityEl,
+        uvIndexEl);
+
+    DisplayCurrent.append(cityNamEl,iconEl,displayRow);
+    
+            
+    
 
               console.log("data of day + 1*****");
               console.log("icon " + DataResponse.daily[1].weather[0].icon);
+              icon = DataResponse.daily[1].weather[0].icon;
+              temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+              iconEl.src = temp;
+
               console.log("temp max "+ DataResponse.daily[1].temp.max);
               console.log("temp min "+ DataResponse.daily[1].temp.min);
               console.log("wind speed "+ DataResponse.daily[1].wind_speed);
