@@ -59,12 +59,32 @@ function getONECALLWeatehr(){
       })
 }
 
+// global parameters used on weather display
+var Wind = "Wind: ";
+var Humidity = "Humidity: ";
+var Rain = "Chance of Rain: ";
+var sckyCondition = "SKY Condition: ";
+var mph = " mph";
+var persentageIcon = "%";
+var icon = "http:";
 //
+var weatherDisplay = document.querySelector('.weather');
+var iconEl = document.createElement('img');
+var projectRow = document.createElement('ul');
+var TemperatureEl = document.createElement('li');
+var TemperatureEl2 = document.createElement('li');
+var WindEl = document.createElement('li');
+var RainEl = document.createElement('li');
+var HumidityEl = document.createElement('li');
+var skyConditionEl = document.createElement('li');
+
 // function will display the data from the call on the page
 function displayWeather(){
-
+    var temp;
                  console.log("data sucessfuls accessed");
               console.log("icon " + DataResponse.current.weather[0].icon);
+              temp = DataResponse.current.weather[0].icon;
+              iconEl.src = icon + temp;
               console.log("Temperature " + DataResponse.current.temp);
               console.log("humidity " + DataResponse.current.humidity);
               console.log("wind Speed " + DataResponse.current.wind_speed);
