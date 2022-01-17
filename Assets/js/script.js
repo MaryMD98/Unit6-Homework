@@ -10,6 +10,8 @@ var DisCityName;
 var latitude;
 var longitude;
 
+//
+getLocation();
 //function will get latitude and longitude of the location searched by user
 function getLocation(){
     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + openWeatherAPI)
@@ -34,8 +36,6 @@ function getLocation(){
       })
 }
 
-getLocation();
-
 //save a copy of the data returned in one call
 var DataResponse;
 
@@ -49,7 +49,7 @@ function getONECALLWeatehr(){
             .then(function(data) {
               // save data to global parameter to use in other functions
               DataResponse = data;
-
+                console.log(DataResponse);
               // display the weather
               displayWeather();
           });
@@ -66,7 +66,7 @@ var uvIndex = "UV Index: ";
 var Temperature = "Temp: ";
 var mph = " MPH";
 var persentageIcon = "%";
-var fahrenheit = "°F";
+var fahrenheit = "°F  ";
 var icon;
 //current day display
 var DisplayCurrent = document.querySelector('.display-today');
@@ -74,17 +74,18 @@ var DisplayCurrent = document.querySelector('.display-today');
 var Display5day = document.querySelector('.display-5days');
 // create elements
 var cityNamEl = document.createElement('h3');
+var datetoDis = document.createElement('h3');
 var iconEl = document.createElement('img');
 var displayRow = document.createElement('ul');
-var TemperatureEl = document.createElement('li');
-var WindEl = document.createElement('li');
-var HumidityEl = document.createElement('li');
-var uvIndexEl = document.createElement('li');
+var TemperatureEl = document.createElement('ol');
+var WindEl = document.createElement('ol');
+var HumidityEl = document.createElement('ol');
+var uvIndexEl = document.createElement('ol');
 
 // function will display the data from the call on the page
 function displayWeather(){
     var temp;
-        
+    console.log("display current weather");
     //display current dataon page
     // display city name and current date
     cityNamEl = DisCityName;
@@ -97,13 +98,13 @@ function displayWeather(){
     TemperatureEl.textContent = Temperature + temp + fahrenheit;
     // display wind speed
     temp = DataResponse.current.wind_speed;
-    WindEl.textContent = temp + mph;
+    WindEl.textContent = Wind + temp + mph;
     // display Humidity
     temp = DataResponse.current.humidity;
-    HumidityEl.textContent = temp + persentageIcon;
+    HumidityEl.textContent = Humidity + temp + persentageIcon;
     //display uv index
     temp = DataResponse.current.uvi;
-    uvIndexEl.textContent = temp;
+    uvIndexEl.textContent = uvIndex + temp;
 
     // appends to display on page
     displayRow.append(
@@ -113,28 +114,43 @@ function displayWeather(){
         uvIndexEl);
 
     DisplayCurrent.append(cityNamEl,iconEl,displayRow);
-    
-            
-    
+    display5DayWeather();
+}
 
-              console.log("data of day + 1*****");
-              console.log("icon " + DataResponse.daily[1].weather[0].icon);
-              icon = DataResponse.daily[1].weather[0].icon;
-              temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-              iconEl.src = temp;
+function display5DayWeather(){
+    var temp;
+    var temp2;
+        console.log("display 5 days of weather");
+    //display 5 days
+    // display date
+    // datetoDis = ;
+    // display icon        
+    icon = DataResponse.daily[1].weather[0].icon;
+    temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    iconEl.src = temp;
+    // display temperature
+    temp = DataResponse.daily[1].temp.max;
+    temp2 = DataResponse.daily[1].temp.min;
+    TemperatureEl.textContent = Temperature + temp + fahrenheit + temp2 + fahrenheit;
+    // display wind speed
+    temp = DataResponse.daily[1].wind_speed;
+    WindEl.textContent = Wind + temp + mph;
+    // display Humidity
+    temp = DataResponse.daily[1].humidity;
+    HumidityEl.textContent = Humidity + temp + persentageIcon;
+  
+    // appends to display on page
+    displayRow.appendChild(
+        TemperatureEl,
+        WindEl,
+        HumidityEl);
 
-              console.log("temp max "+ DataResponse.daily[1].temp.max);
-              console.log("temp min "+ DataResponse.daily[1].temp.min);
-              console.log("wind speed "+ DataResponse.daily[1].wind_speed);
-              console.log("Humidity "+ DataResponse.daily[1].humidity);
-              console.log("data of day + 2 *********");
-              console.log("icon " + DataResponse.daily[2].weather[0].icon);
-              console.log("temp max "+ DataResponse.daily[2].temp.max);
-              console.log("temp min "+ DataResponse.daily[2].temp.min);
-              console.log("wind speed "+ DataResponse.daily[2].wind_speed);
-              console.log("Humidity "+ DataResponse.daily[2].humidity);
-              console.log("data of day + 3 *********");
-              console.log("data of day + 4");
-              console.log("data of day + 5");
+    Display5day.appendChild(iconEl,displayRow);
 
+            //   console.log("data of day + 2 *********");
+            //   console.log("icon " + DataResponse.daily[2].weather[0].icon);
+            //   console.log("temp max "+ DataResponse.daily[2].temp.max);
+            //   console.log("temp min "+ DataResponse.daily[2].temp.min);
+            //   console.log("wind speed "+ DataResponse.daily[2].wind_speed);
+            //   console.log("Humidity "+ DataResponse.daily[2].humidity);
 }
