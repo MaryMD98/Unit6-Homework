@@ -147,25 +147,24 @@ function display5DayWeather(){
     // appends to display on page
     Display5day.append(datetoDis,iconEl,TemperatureEl,WindEl,HumidityEl);
 
-    var duplicate = Columfor5days.cloneNode(true);
-    rowOF5.appendChild(duplicate);
+    
 
-    // display date
-    datetoDis = "monday";
-    // display icon        
-    icon = DataResponse.daily[2].weather[0].icon;
-    temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    iconEl.src = temp;
-    // display temperature
-    temp = DataResponse.daily[2].temp.max;
-    temp2 = DataResponse.daily[2].temp.min;
-    TemperatureEl.textContent = Temperature + temp + fahrenheit + temp2 + fahrenheit;
-    // display wind speed
-    temp = DataResponse.daily[2].wind_speed;
-    WindEl.textContent = Wind + temp + mph;
-    // display Humidity
-    temp = DataResponse.daily[2].humidity;
-    HumidityEl.textContent = Humidity + temp + persentageIcon;
+    // // display date
+    // datetoDis = "monday";
+    // // display icon        
+    // icon = DataResponse.daily[2].weather[0].icon;
+    // temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    // iconEl.src = temp;
+    // // display temperature
+    // temp = DataResponse.daily[2].temp.max;
+    // temp2 = DataResponse.daily[2].temp.min;
+    // TemperatureEl.textContent = Temperature + temp + fahrenheit + temp2 + fahrenheit;
+    // // display wind speed
+    // temp = DataResponse.daily[2].wind_speed;
+    // WindEl.textContent = Wind + temp + mph;
+    // // display Humidity
+    // temp = DataResponse.daily[2].humidity;
+    // HumidityEl.textContent = Humidity + temp + persentageIcon;
 
 
 
