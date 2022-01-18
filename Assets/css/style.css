@@ -2,6 +2,12 @@
     background:linear-gradient(to right, #7d3c91, #775292, #866092, #936f9e,#9b85a1 );
 } */
 
+.card {
+    background-color: #b4dcdd;
+    color: black;
+    border: #1683a1 solid 5px;
+}
+
 .container {
     padding: 5rem;
 }
