@@ -34,3 +34,7 @@
     display: table;
     clear: both;
   }
+
+  .color{
+      background-color: mediumorchid;
+  }

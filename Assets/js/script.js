@@ -113,7 +113,7 @@ function displayWeather(){
 function display5DayWeather(){
     // next 5 days display
     var Display5day = document.querySelector('.display-5days');
-    var Columfor5days = document.querySelector('colum5day');
+    var Columfor5days = document.querySelector('.colum5day');
     var rowOF5 = document.querySelector('.rowfor5');
      // create elements 
     var datetoDis = document.createElement('h3');
@@ -145,7 +145,7 @@ function display5DayWeather(){
     HumidityEl.textContent = Humidity + temp + persentageIcon;
   
     // appends to display on page
-    Display5day.append(datetoDis,iconEl,TemperatureEl,WindEl,HumidityEl);
+    Columfor5days.append(datetoDis,iconEl,TemperatureEl,WindEl,HumidityEl);
 
     
 
@@ -175,46 +175,46 @@ function display5DayWeather(){
             //   console.log("wind speed "+ DataResponse.daily[2].wind_speed);
             //   console.log("Humidity "+ DataResponse.daily[2].humidity);
 
-            var availableBodiesDisplay = document.querySelector('.available-bodies');
-            availableBodiesDisplay.innerHTML = ''
-            let count = 0
+          //   var availableBodiesDisplay = document.querySelector('.available-bodies');
+          //   availableBodiesDisplay.innerHTML = ''
+          //   let count = 0
                    
-                   planetInfo.forEach((planet)=>{
+          //          planetInfo.forEach((planet)=>{
    
-                       var planetCardEl = document.createElement('div');
-                       planetCardEl.setAttribute('class', 'card horizontal');
+          //              var planetCardEl = document.createElement('div');
+          //              planetCardEl.setAttribute('class', 'card horizontal');
    
-                       var planetImageDivEl = document.createElement('div');
-                       planetImageDivEl.setAttribute('class', 'card-image valign-wrapper');
+          //              var planetImageDivEl = document.createElement('div');
+          //              planetImageDivEl.setAttribute('class', 'card-image valign-wrapper');
    
-                       var planetImageEl = document.createElement('img');
-                       planetImageEl.setAttribute('src', `${pics[count]}`);
+          //              var planetImageEl = document.createElement('img');
+          //              planetImageEl.setAttribute('src', `${pics[count]}`);
    
-                       count++
+          //              count++
    
-                       var planetContentEl = document.createElement('div');
-                       planetContentEl.setAttribute('class', 'card-content');
+          //              var planetContentEl = document.createElement('div');
+          //              planetContentEl.setAttribute('class', 'card-content');
    
-                       var planetHeader = document.createElement('h4');
+          //              var planetHeader = document.createElement('h4');
                      
-                       planetHeader.textContent = planet[0]
+          //              planetHeader.textContent = planet[0]
                    
-                       var planetContentUl = document.createElement('ul');
+          //              var planetContentUl = document.createElement('ul');
    
-                       let titleOfPlanet = planet.shift()
-                       planet.forEach((listInfo)=>{
-                           var planetContentLi = document.createElement('li');
-                           planetContentLi.innerText = listInfo;
-                           planetContentUl.appendChild(planetContentLi)
-                       })
-                       planet.unshift(titleOfPlanet)
+          //              let titleOfPlanet = planet.shift()
+          //              planet.forEach((listInfo)=>{
+          //                  var planetContentLi = document.createElement('li');
+          //                  planetContentLi.innerText = listInfo;
+          //                  planetContentUl.appendChild(planetContentLi)
+          //              })
+          //              planet.unshift(titleOfPlanet)
    
-                       planetImageDivEl.append(planetImageEl);
-                       planetContentEl.append(planetHeader, planetContentUl);
-                       planetCardEl.append(planetImageDivEl, planetContentEl);
-                       availableBodiesDisplay.append(planetCardEl);
+          //              planetImageDivEl.append(planetImageEl);
+          //              planetContentEl.append(planetHeader, planetContentUl);
+          //              planetCardEl.append(planetImageDivEl, planetContentEl);
+          //              availableBodiesDisplay.append(planetCardEl);
                        
-                   })
+          //          })
          
-           }
+          //  }
 }
