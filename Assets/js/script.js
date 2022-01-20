@@ -174,4 +174,47 @@ function display5DayWeather(){
             //   console.log("temp min "+ DataResponse.daily[2].temp.min);
             //   console.log("wind speed "+ DataResponse.daily[2].wind_speed);
             //   console.log("Humidity "+ DataResponse.daily[2].humidity);
+
+            var availableBodiesDisplay = document.querySelector('.available-bodies');
+            availableBodiesDisplay.innerHTML = ''
+            let count = 0
+                   
+                   planetInfo.forEach((planet)=>{
+   
+                       var planetCardEl = document.createElement('div');
+                       planetCardEl.setAttribute('class', 'card horizontal');
+   
+                       var planetImageDivEl = document.createElement('div');
+                       planetImageDivEl.setAttribute('class', 'card-image valign-wrapper');
+   
+                       var planetImageEl = document.createElement('img');
+                       planetImageEl.setAttribute('src', `${pics[count]}`);
+   
+                       count++
+   
+                       var planetContentEl = document.createElement('div');
+                       planetContentEl.setAttribute('class', 'card-content');
+   
+                       var planetHeader = document.createElement('h4');
+                     
+                       planetHeader.textContent = planet[0]
+                   
+                       var planetContentUl = document.createElement('ul');
+   
+                       let titleOfPlanet = planet.shift()
+                       planet.forEach((listInfo)=>{
+                           var planetContentLi = document.createElement('li');
+                           planetContentLi.innerText = listInfo;
+                           planetContentUl.appendChild(planetContentLi)
+                       })
+                       planet.unshift(titleOfPlanet)
+   
+                       planetImageDivEl.append(planetImageEl);
+                       planetContentEl.append(planetHeader, planetContentUl);
+                       planetCardEl.append(planetImageDivEl, planetContentEl);
+                       availableBodiesDisplay.append(planetCardEl);
+                       
+                   })
+         
+           }
 }
