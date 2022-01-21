@@ -64,7 +64,9 @@ var Wind = "Wind: ";
 var Humidity = "Humidity: ";
 var uvIndex = "UV Index: ";
 var Temperature = "Temp: ";
-var mph = " MPH";
+var mph = " mph";
+var high = "High ";
+var low = "Low ";
 var persentageIcon = "%";
 var fahrenheit = "°F  ";
 var icon;
@@ -112,43 +114,73 @@ function displayWeather(){
 //function to display for 5 days
 function display5DayWeather(){
     // next 5 days display
-    var Display5day = document.querySelector('.display-5days');
+    // var Display5day = document.querySelector('.display-5days');
     var Columfor5days = document.querySelector('.colum5day');
     var rowOF5 = document.querySelector('.rowfor5');
      // create elements 
     var datetoDis = document.createElement('h3');
     var iconEl = document.createElement('img');
     var TemperatureEl = document.createElement('p');
+    var TemperatureHEl = document.createElement('p');
+    var TemperatureLEl = document.createElement('p');
     var WindEl = document.createElement('p');
     var HumidityEl = document.createElement('p');
     var temp;
     var temp2;
         console.log("display 5 days of weather");
-    //display 5 days
+    //display 5 days // high = "High "; low = "Low ";
     
 
-    // display date
-    datetoDis = "monday";
-    // display icon        
-    icon = DataResponse.daily[1].weather[0].icon;
-    temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    iconEl.src = temp;
-    // display temperature
-    temp = DataResponse.daily[1].temp.max;
-    temp2 = DataResponse.daily[1].temp.min;
-    TemperatureEl.textContent = Temperature + temp + fahrenheit + temp2 + fahrenheit;
-    // display wind speed
-    temp = DataResponse.daily[1].wind_speed;
-    WindEl.textContent = Wind + temp + mph;
-    // display Humidity
-    temp = DataResponse.daily[1].humidity;
-    HumidityEl.textContent = Humidity + temp + persentageIcon;
+    // // display date
+    // datetoDis = "monday";
+    // // display icon        
+    // icon = DataResponse.daily[1].weather[0].icon;
+    // temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    // iconEl.src = temp;
+    // // display temperature
+    // temp = high + DataResponse.daily[1].temp.max;
+    // temp2 = low + DataResponse.daily[1].temp.min;
+    // TemperatureEl.textContent = Temperature;
+    // TemperatureHEl.textContent = temp + fahrenheit;
+    // TemperatureLEl.textContent = temp2 + fahrenheit;
+    // // display wind speed
+    // temp = DataResponse.daily[1].wind_speed;
+    // WindEl.textContent = Wind + temp + mph;
+    // // display Humidity
+    // temp = DataResponse.daily[1].humidity;
+    // HumidityEl.textContent = Humidity + temp + persentageIcon;
   
-    // appends to display on page
-    Columfor5days.append(datetoDis,iconEl,TemperatureEl,WindEl,HumidityEl);
+    // // appends to display on page
+    // Columfor5days.append(datetoDis,iconEl,TemperatureEl,TemperatureHEl,TemperatureLEl,WindEl,HumidityEl);
 
     
+    
+for(var i = 0 ; i < 5; i++){
+  var weatherpointer = 1;
+  var Display1day = Columfor5days.querySelectorAll('.color');
+  // display date
+  datetoDis = "monday";
+  // display icon        
+  icon = DataResponse.daily[weatherpointer].weather[0].icon;
+  temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+  iconEl.src = temp;
+  // display temperature
+  temp = high + DataResponse.daily[weatherpointer].temp.max;
+  temp2 = low + DataResponse.daily[weatherpointer].temp.min;
+  TemperatureEl.textContent = Temperature;
+  TemperatureHEl.textContent = temp + fahrenheit;
+  TemperatureLEl.textContent = temp2 + fahrenheit;
+  // display wind speed
+  temp = DataResponse.daily[weatherpointer].wind_speed;
+  WindEl.textContent = Wind + temp + mph;
+  // display Humidity
+  temp = DataResponse.daily[weatherpointer].humidity;
+  HumidityEl.textContent = Humidity + temp + persentageIcon;
 
+  // appends to display on page
+  Display1day[i].appendChild(datetoDis,iconEl,TemperatureEl,TemperatureHEl,TemperatureLEl,WindEl,HumidityEl);
+  weatherpointer++;
+}
     // // display date
     // datetoDis = "monday";
     // // display icon        

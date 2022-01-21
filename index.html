@@ -20,10 +20,10 @@
     <main >    <!--class="container"-->   
       <!-- 1 row to be devided in two colums -->
         <div class="row">
-          <!-- colum 1 to display search button and display results -->
-            <div class="col-sm-4 input-field offset-s3">
-                <input placeholder='Ex: "Austin" or 78712' id="location" type="text" class="validate">
-                <label for="location">Location</label>
+          <!-- colum 1 to display search button and display results offset-s3 offset-md-4-->
+            <div class="col-sm-2 input-field ">
+                <label for="location">Location:</label>
+                <input placeholder='Ex: "Austin" or austin,tx' id="location" type="text" class="validate">
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                 <!-- list of saved location -->
                 <div class="collection"></div>   
@@ -31,24 +31,24 @@
             
           <!-- colum 2 to display the results of weather search -->
           <!-- devided in two rows -->
-            <div class="col-sm-4 section msg-display">
+            <div class="col section msg-display">
                
               <!--row 1 will display current weather   -->
-                    <div class="row card w-75">
+                    <div class="row card">
                         <div class="card-body display-today">
                             <h5 class="card-title">card row</h5>
                         </div>
                     </div>
 
               <!--row 2 will display 5 colums that display future weather  -->
-                    <div class="row "> <!-- rowfor5"> -->
+                    <div class="row colum5day"> <!-- rowfor5"> -->
 
                   <!--columns to display future weather  -->
-                      <div class = "col-6 color colum5day">column1</div>
-                      <div class = "col-6 color">column2</div>
-                      <div class = "col-6 color">column3</div>
-                      <div class = "col-6 color">column4</div>
-                      <div class = "col-6 color">column5</div>
+                      <div class = "col color"></div>
+                      <div class = "col color">column2</div>
+                      <div class = "col color">column3</div>
+                      <div class = "col color">column4</div>
+                      <div class = "col color">column5</div>
                         <!-- <div class="col-sm-6 colum5day">
                           <div class="card">
                             <div class="card-body display-5days ">
