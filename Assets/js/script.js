@@ -1,19 +1,15 @@
 var openWeatherAPI = "7624e64d3821f1c4e9cbd917e59c3d78";
 
+//save the user search hisptory
+var UserSearchHistory = [];
 // city name will be set with the name of the user input needed to do te call for get location
 var cityName;
 // locationResponse will be set after the call to gather lat and lon is succesful
 var locationResponse;
 //nae of city will be displaied on the page
 var DisCityName;
-// save lat and lon to use in next API call
-var latitude;
-var longitude;
 
 //event listener when city is inputted
-// var searchBTN = $('.submitBTN');
-// searchBTN.on('click',function(event){
-
 var inputAdre = document.querySelector('#locationInput');
 inputAdre.addEventListener('submit', function(event){
   event.preventDefault();
@@ -25,6 +21,12 @@ inputAdre.addEventListener('submit', function(event){
   }
 });
 
+var HistoryDisplay = document.querySelector('.HistDisplay');
+//display user search history on page
+function DisplayUserHIs(){
+  
+}
+
 //function will get latitude and longitude of the location searched by user
 function getLocation(){
     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + openWeatherAPI)
@@ -34,14 +36,25 @@ function getLocation(){
 
           response.json()
             .then(function(data) {
-              // save data to global parameter to use in other functions
+              // save data to global parameter to use in other function
               locationResponse = data;
+              // check if the input data has been used before
+              if(!UserSearchHistory.includes(locationResponse[0].name)){
+                //check if there are more than 5 searches
+                  if(UserSearchHistory.lenght === 5){
+                    UserSearchHistory.shift();
+                  }
+                  //save the new search on user search history
+                  UserSearchHistory.push(locationResponse[0].name);
 
-                // save lat and lon to use in next call
-                latitude = locationResponse[0].lat;
-                longitude = locationResponse[0].lon;
-                DisCityName = locationResponse[0].name;
-                getONECALLWeatehr();
+                  //save search to local history transform to string
+                  localStorage.setItem("userHistory",JSON.stringify(UserSearchHistory));
+
+                  // save lat and lon to use in next call
+                  DisCityName = locationResponse[0].name;
+                  getONECALLWeatehr(locationResponse[0].lat , locationResponse[0].lon );
+                  DisplayUserHIs();
+              }
           });
         } else {
           console.log("ERROR: Location submited is not correct. Please try again");
@@ -52,7 +65,7 @@ function getLocation(){
 //save a copy of the data returned in one call
 var DataResponse;
 
-function getONECALLWeatehr(){
+function getONECALLWeatehr(latitude, longitude){
     fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&exclude=hourly,minutely,alerts&units=imperial&appid=' + openWeatherAPI)
     
       .then(function(response){
@@ -63,7 +76,6 @@ function getONECALLWeatehr(){
               // save data to global parameter to use in other functions
               DataResponse = data;
               // display the weather
-              console.log(DataResponse);
               displayWeather();
           });
         } else {
