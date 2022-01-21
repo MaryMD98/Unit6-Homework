@@ -1,7 +1,7 @@
 var openWeatherAPI = "7624e64d3821f1c4e9cbd917e59c3d78";
 
 // city name will be set with the name of the user input** waitin gfor event button
-var cityName = "london";
+var cityName = "soul";
 // locationResponse will be set after the call to gather lat and lon is succesful
 var locationResponse;
 //nae of city will be displaied on the page
@@ -10,7 +10,8 @@ var DisCityName;
 var latitude;
 var longitude;
 
-//
+//event listener when city is inputted
+
 getLocation();
 //function will get latitude and longitude of the location searched by user
 function getLocation(){
@@ -63,7 +64,7 @@ var Wind = "Wind: ";
 var Humidity = "Humidity: ";
 var uvIndex = "UV Index: ";
 var Temperature = "Temp: ";
-var mph = " mph";
+var mph = "mph";
 var high = "High ";
 var low = "Low ";
 var persentageIcon = "%";
@@ -81,7 +82,9 @@ function displayWeather(){
     var WindEl = document.createElement('p');
     var HumidityEl = document.createElement('p');
     var uvIndexEl = document.createElement('p');
+        uvIndexEl.setAttribute('class', 'uvlight');
     var labeluvIndex = document.createElement('span');
+        labeluvIndex.setAttribute('class', 'badge'); 
 
     //display current dataon page
     // display city name and current date
@@ -96,21 +99,23 @@ function displayWeather(){
     HumidityEl.textContent = Humidity + DataResponse.current.humidity + persentageIcon;
     //display uv index
     uvIndexEl.textContent = uvIndex; // + DataResponse.current.uvi;
-    labeluvIndex.textContent = DataResponse.current.uvi;
 
-    uvIndexEl.append(labeluvIndex);
+    labeluvIndex.textContent = DataResponse.current.uvi;
+    var uvindexcolor = DataResponse.current.uvi;
     // appends to display on page
     DisplayCurrent.append(cityNamEl,iconEl,TemperatureEl,WindEl,HumidityEl,uvIndexEl,labeluvIndex);
-    DisplayCurrent.setAttribute("style", "font-size: 20px");  
-    labeluvIndex.setAttribute('class', 'badge'); 
-
-        if(DataResponse.current.uvi < 3){
-          labeluvIndex.setAttribute("style", "background-color: green");
-        } else if(DataResponse.current.uvi <= 5){
+    DisplayCurrent.setAttribute("style", "font-size: 18px; font-weight: bold");  
+    
+        if( uvindexcolor < 3){
+          labeluvIndex.setAttribute("style", "background-color: green; color: white");
+        } else if( uvindexcolor <= 5){
           labeluvIndex.setAttribute("style", "background-color: yellow");
-        }else {
-         // greater than 5 dengerous
-          labeluvIndex.setAttribute("style", "background-color: red");  
+        } else if( uvindexcolor <= 7){
+          labeluvIndex.setAttribute("style", "background-color: orange"); 
+        } else if( uvindexcolor <= 10){
+          labeluvIndex.setAttribute("style", "background-color: red; color: white"); 
+        } else {
+          labeluvIndex.setAttribute("style", "background-color: purple; color: white");  
         }
     //display 5 days weather
     display5DayWeather();
