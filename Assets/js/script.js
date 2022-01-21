@@ -81,6 +81,7 @@ function displayWeather(){
     var WindEl = document.createElement('p');
     var HumidityEl = document.createElement('p');
     var uvIndexEl = document.createElement('p');
+    var labeluvIndex = document.createElement('span');
 
     //display current dataon page
     // display city name and current date
@@ -94,11 +95,23 @@ function displayWeather(){
     // display Humidity
     HumidityEl.textContent = Humidity + DataResponse.current.humidity + persentageIcon;
     //display uv index
-    uvIndexEl.textContent = uvIndex + DataResponse.current.uvi;
+    uvIndexEl.textContent = uvIndex; // + DataResponse.current.uvi;
+    labeluvIndex.textContent = DataResponse.current.uvi;
 
+    uvIndexEl.append(labeluvIndex);
     // appends to display on page
-    DisplayCurrent.append(cityNamEl,iconEl,TemperatureEl,WindEl,HumidityEl,uvIndexEl);
-    DisplayCurrent.setAttribute("style", "font-size: 20px");   
+    DisplayCurrent.append(cityNamEl,iconEl,TemperatureEl,WindEl,HumidityEl,uvIndexEl,labeluvIndex);
+    DisplayCurrent.setAttribute("style", "font-size: 20px");  
+    labeluvIndex.setAttribute('class', 'badge'); 
+
+        if(DataResponse.current.uvi < 3){
+          labeluvIndex.setAttribute("style", "background-color: green");
+        } else if(DataResponse.current.uvi <= 5){
+          labeluvIndex.setAttribute("style", "background-color: yellow");
+        }else {
+         // greater than 5 dengerous
+          labeluvIndex.setAttribute("style", "background-color: red");  
+        }
     //display 5 days weather
     display5DayWeather();
 }
