@@ -6,50 +6,41 @@
     background-color: #b4dcdd;
     color: black;
     border: #5e02a8 solid 2px;
-    border-right: 20px;
-    /* margin: 5px 0; */
+    margin-right: 30px;
+    background:linear-gradient(to right, #c15dfa , #c872fa , #cf84fa , #d592fc ,#d9a0fa );
+}
+
+.results{
+    margin-left: 40px;
 }
 
 .display-today {
     border: white solid 2px;
     /* background-color: #0a557c; */
 }
+
 .colum5day {
     border: white solid 20px;
     /* background-color: #329dd6; */
 }
 
-.color{
-    background-color: mediumorchid;
-    padding-block: 20px;
-    height: 300px;
-    width: 300px;
+.card-body{
+    margin-left: 20px;
+    margin-right: 40px;
+    background:linear-gradient(to right, #68bcf5, #8dcdf8, #a2d5f7, #addcfc,#b6def8 );
+    color: black;
+    border: #5e02a8 solid 2px;
 }
-  
-.row{
-    background-color: red;
-}
-
-/* .col{
-      border:midnightblue solid 5px;
-      
-} */
-
-.results{
-      width: 50%;
-
-}
-
-/* img {
-    max-width: 100%;
-    height: auto;
-} */
 
 ul{
     list-style-type: none;
-    
 }
 
 li{
-    text-indent: -30px;
+    text-indent: -40px;
+}
+
+h4{
+    margin-bottom: -10px;
+    margin-top: -5px;
 }
