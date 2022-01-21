@@ -5,7 +5,9 @@
 .card {
     background-color: #b4dcdd;
     color: black;
-    border: #1683a1 solid 5px;
+    border: #5e02a8 solid 2px;
+    border-right: 20px;
+    /* margin: 5px 0; */
 }
 
 .display-today {
@@ -13,18 +15,41 @@
     /* background-color: #0a557c; */
 }
 .colum5day {
-    border: white solid 2px;
+    border: white solid 20px;
     /* background-color: #329dd6; */
 }
 
-  .color{
-      background-color: mediumorchid;
-  }
+.color{
+    background-color: mediumorchid;
+    padding-block: 20px;
+    height: 300px;
+    width: 300px;
+}
   
-  .row{
+.row{
     background-color: red;
-  }
+}
 
-  .col{
+/* .col{
       border:midnightblue solid 5px;
-  }
+      
+} */
+
+.results{
+      width: 50%;
+
+}
+
+/* img {
+    max-width: 100%;
+    height: auto;
+} */
+
+ul{
+    list-style-type: none;
+    
+}
+
+li{
+    text-indent: -30px;
+}

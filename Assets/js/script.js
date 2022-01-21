@@ -113,146 +113,63 @@ function displayWeather(){
 
 //function to display for 5 days
 function display5DayWeather(){
-    // next 5 days display
-    // var Display5day = document.querySelector('.display-5days');
     var Columfor5days = document.querySelector('.colum5day');
-    var rowOF5 = document.querySelector('.rowfor5');
-     // create elements 
-    
     var temp;
     var temp2;
-        console.log("display 5 days of weather");
-    //display 5 days // high = "High "; low = "Low ";
-    
-
-    // // display date
-    // datetoDis = "monday";
-    // // display icon        
-    // icon = DataResponse.daily[1].weather[0].icon;
-    // temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    // iconEl.src = temp;
-    // // display temperature
-    // temp = high + DataResponse.daily[1].temp.max;
-    // temp2 = low + DataResponse.daily[1].temp.min;
-    // TemperatureEl.textContent = Temperature;
-    // TemperatureHEl.textContent = temp + fahrenheit;
-    // TemperatureLEl.textContent = temp2 + fahrenheit;
-    // // display wind speed
-    // temp = DataResponse.daily[1].wind_speed;
-    // WindEl.textContent = Wind + temp + mph;
-    // // display Humidity
-    // temp = DataResponse.daily[1].humidity;
-    // HumidityEl.textContent = Humidity + temp + persentageIcon;
-  
-    // // appends to display on page
-    // Columfor5days.append(datetoDis,iconEl,TemperatureEl,TemperatureHEl,TemperatureLEl,WindEl,HumidityEl);
+    //display 5 days 
     var weatherpointer = 1;
-    
-    var Display1day = Columfor5days.querySelectorAll('.color');
 
+// display the columns and information
 for(var i = 0 ; i < 5; i++){
- 
+    // create the div col to create one of the columns
+    var columTOdis = document.createElement('div');
+    columTOdis.setAttribute('class', 'col card');
   
-  var columTOdis = document.createElement('div');
-  columTOdis.setAttribute('class', 'col color');
-  
-  var datetoDis = document.createElement('h3');
+    // create the elemnts to add to the columns
+    var datetoDis = document.createElement('h3');
     var iconEl = document.createElement('img');
-    var TemperatureEl = document.createElement('p');
-    var TemperatureHEl = document.createElement('p');
-    var TemperatureLEl = document.createElement('p');
-    var WindEl = document.createElement('p');
-    var HumidityEl = document.createElement('p');
+    var info = document.createElement('ul');
+    var TemperatureEl = document.createElement('li');
+    var TemperatureHEl = document.createElement('li');
+    var TemperatureLEl = document.createElement('li');
+    var WindEl = document.createElement('li');
+    var HumidityEl = document.createElement('li');
+
   // display date
   datetoDis = "monday";
-  // display icon        
-  icon = DataResponse.daily[weatherpointer].weather[0].icon;
-  temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-  iconEl.src = temp;
-  // display temperature
-  temp = high + DataResponse.daily[weatherpointer].temp.max;
-  temp2 = low + DataResponse.daily[weatherpointer].temp.min;
-  TemperatureEl.textContent = Temperature;
-  TemperatureHEl.textContent = temp + fahrenheit;
-  TemperatureLEl.textContent = temp2 + fahrenheit;
-  // display wind speed
-  temp = DataResponse.daily[weatherpointer].wind_speed;
-  WindEl.textContent = Wind + temp + mph;
-  // display Humidity
-  temp = DataResponse.daily[weatherpointer].humidity;
-  HumidityEl.textContent = Humidity + temp + persentageIcon;
+    // display icon        
+    icon = DataResponse.daily[weatherpointer].weather[0].icon;
+    temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    iconEl.src = temp;
+    // display temperature
+    temp = high + DataResponse.daily[weatherpointer].temp.max;
+    temp2 = low + DataResponse.daily[weatherpointer].temp.min;
+    TemperatureEl.textContent = Temperature;
+    // TemperatureHEl.textContent = temp + fahrenheit + temp2 + fahrenheit;
+    TemperatureHEl.textContent = temp + fahrenheit;
+    TemperatureLEl.textContent = temp2 + fahrenheit;
+    // display wind speed
+    temp = DataResponse.daily[weatherpointer].wind_speed;
+    WindEl.textContent = Wind + temp + mph;
+    // display Humidity
+    temp = DataResponse.daily[weatherpointer].humidity;
+    HumidityEl.textContent = Humidity + temp + persentageIcon;
 
   // appends to display on page
-  columTOdis.append(datetoDis,iconEl,TemperatureEl,TemperatureHEl,TemperatureLEl,WindEl,HumidityEl);
+  info.append(TemperatureEl,
+    TemperatureHEl,
+    TemperatureLEl,
+    WindEl,
+    HumidityEl);
+
+  info.setAttribute("style", "font-size: 13px");
+  TemperatureHEl.setAttribute("style", "font-size: 11px; font-weight: bold");
+  TemperatureLEl.setAttribute("style", "font-size: 11px; font-weight: bold");
+  columTOdis.append(datetoDis,iconEl,info);
+  columTOdis.setAttribute("style", "margin-right: 20px");
   Columfor5days.append(columTOdis);
+  
   weatherpointer++;
 }
-    // // display date
-    // datetoDis = "monday";
-    // // display icon        
-    // icon = DataResponse.daily[2].weather[0].icon;
-    // temp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    // iconEl.src = temp;
-    // // display temperature
-    // temp = DataResponse.daily[2].temp.max;
-    // temp2 = DataResponse.daily[2].temp.min;
-    // TemperatureEl.textContent = Temperature + temp + fahrenheit + temp2 + fahrenheit;
-    // // display wind speed
-    // temp = DataResponse.daily[2].wind_speed;
-    // WindEl.textContent = Wind + temp + mph;
-    // // display Humidity
-    // temp = DataResponse.daily[2].humidity;
-    // HumidityEl.textContent = Humidity + temp + persentageIcon;
-
-
-
-            //   console.log("data of day + 2 *********");
-            //   console.log("icon " + DataResponse.daily[2].weather[0].icon);
-            //   console.log("temp max "+ DataResponse.daily[2].temp.max);
-            //   console.log("temp min "+ DataResponse.daily[2].temp.min);
-            //   console.log("wind speed "+ DataResponse.daily[2].wind_speed);
-            //   console.log("Humidity "+ DataResponse.daily[2].humidity);
-
-          //   var availableBodiesDisplay = document.querySelector('.available-bodies');
-          //   availableBodiesDisplay.innerHTML = ''
-          //   let count = 0
-                   
-          //          planetInfo.forEach((planet)=>{
-   
-          //              var planetCardEl = document.createElement('div');
-          //              planetCardEl.setAttribute('class', 'card horizontal');
-   
-          //              var planetImageDivEl = document.createElement('div');
-          //              planetImageDivEl.setAttribute('class', 'card-image valign-wrapper');
-   
-          //              var planetImageEl = document.createElement('img');
-          //              planetImageEl.setAttribute('src', `${pics[count]}`);
-   
-          //              count++
-   
-          //              var planetContentEl = document.createElement('div');
-          //              planetContentEl.setAttribute('class', 'card-content');
-   
-          //              var planetHeader = document.createElement('h4');
-                     
-          //              planetHeader.textContent = planet[0]
-                   
-          //              var planetContentUl = document.createElement('ul');
-   
-          //              let titleOfPlanet = planet.shift()
-          //              planet.forEach((listInfo)=>{
-          //                  var planetContentLi = document.createElement('li');
-          //                  planetContentLi.innerText = listInfo;
-          //                  planetContentUl.appendChild(planetContentLi)
-          //              })
-          //              planet.unshift(titleOfPlanet)
-   
-          //              planetImageDivEl.append(planetImageEl);
-          //              planetContentEl.append(planetHeader, planetContentUl);
-          //              planetCardEl.append(planetImageDivEl, planetContentEl);
-          //              availableBodiesDisplay.append(planetCardEl);
-                       
-          //          })
-         
-          //  }
+  
 }
