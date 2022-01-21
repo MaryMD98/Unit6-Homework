@@ -118,13 +118,7 @@ function display5DayWeather(){
     var Columfor5days = document.querySelector('.colum5day');
     var rowOF5 = document.querySelector('.rowfor5');
      // create elements 
-    var datetoDis = document.createElement('h3');
-    var iconEl = document.createElement('img');
-    var TemperatureEl = document.createElement('p');
-    var TemperatureHEl = document.createElement('p');
-    var TemperatureLEl = document.createElement('p');
-    var WindEl = document.createElement('p');
-    var HumidityEl = document.createElement('p');
+    
     var temp;
     var temp2;
         console.log("display 5 days of weather");
@@ -152,12 +146,23 @@ function display5DayWeather(){
   
     // // appends to display on page
     // Columfor5days.append(datetoDis,iconEl,TemperatureEl,TemperatureHEl,TemperatureLEl,WindEl,HumidityEl);
+    var weatherpointer = 1;
+    
+    var Display1day = Columfor5days.querySelectorAll('.color');
 
-    
-    
 for(var i = 0 ; i < 5; i++){
-  var weatherpointer = 1;
-  var Display1day = Columfor5days.querySelectorAll('.color');
+ 
+  
+  var columTOdis = document.createElement('div');
+  columTOdis.setAttribute('class', 'col color');
+  
+  var datetoDis = document.createElement('h3');
+    var iconEl = document.createElement('img');
+    var TemperatureEl = document.createElement('p');
+    var TemperatureHEl = document.createElement('p');
+    var TemperatureLEl = document.createElement('p');
+    var WindEl = document.createElement('p');
+    var HumidityEl = document.createElement('p');
   // display date
   datetoDis = "monday";
   // display icon        
@@ -178,7 +183,8 @@ for(var i = 0 ; i < 5; i++){
   HumidityEl.textContent = Humidity + temp + persentageIcon;
 
   // appends to display on page
-  Display1day[i].appendChild(datetoDis,iconEl,TemperatureEl,TemperatureHEl,TemperatureLEl,WindEl,HumidityEl);
+  columTOdis.append(datetoDis,iconEl,TemperatureEl,TemperatureHEl,TemperatureLEl,WindEl,HumidityEl);
+  Columfor5days.append(columTOdis);
   weatherpointer++;
 }
     // // display date
