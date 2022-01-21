@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="Assets/css/style.css">
 
     <title>Weather Dashboard</title>
@@ -21,13 +21,14 @@
       <!-- 1 row to be devided in two colums -->
         <div class="row">
           <!-- colum 1 to display search button and display results offset-s3 offset-md-4-->
-            <div class="col-sm-2 input-field ">
-                <h3>Search for a City:</h3>
-                <label for="location">Location:</label>
+            <div class="col-3 input-field ">
+              <form id="locationInput">
+                <label for="location">Search for a City:</label>
                 <input placeholder='Ex: "Austin" ' id="location" type="text" class="validate">
-                <button class="btn submitBTN" type="submit" name="action">Submit</button>
-                <!-- list of saved location -->
-                <div class="collection"></div>   
+                <button class="btn submitBTN" type="submit" name="action">Search</button> 
+              </form>  
+              <!-- list of saved location -->
+              <div class="collection"></div>
             </div>
             
           <!-- colum 2 to display the results of weather search -->
@@ -36,7 +37,7 @@
               <!--row 1 will display current weather   -->
                 <div class="row">
                   <div class="card-body display-today">
-                      <h5 class="card-title">card row</h5>
+                      <!-- <h5 class="card-title">card row</h5> -->
                   </div>
                 </div>
 
@@ -60,6 +61,7 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="Assets/js/script.js"></script>
 </body>
 </html>

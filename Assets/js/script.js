@@ -1,7 +1,7 @@
 var openWeatherAPI = "7624e64d3821f1c4e9cbd917e59c3d78";
 
-// city name will be set with the name of the user input** waitin gfor event button
-var cityName = "soul";
+// city name will be set with the name of the user input needed to do te call for get location
+var cityName;
 // locationResponse will be set after the call to gather lat and lon is succesful
 var locationResponse;
 //nae of city will be displaied on the page
@@ -11,8 +11,20 @@ var latitude;
 var longitude;
 
 //event listener when city is inputted
+// var searchBTN = $('.submitBTN');
+// searchBTN.on('click',function(event){
 
-getLocation();
+var inputAdre = document.querySelector('#locationInput');
+inputAdre.addEventListener('submit', function(event){
+  event.preventDefault();
+
+  if(event.target.elements[0].value !== ''){
+    cityName = event.target.elements[0].value;
+    event.target.elements[0].value = '';
+    getLocation();
+  }
+});
+
 //function will get latitude and longitude of the location searched by user
 function getLocation(){
     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + openWeatherAPI)
@@ -51,6 +63,7 @@ function getONECALLWeatehr(){
               // save data to global parameter to use in other functions
               DataResponse = data;
               // display the weather
+              console.log(DataResponse);
               displayWeather();
           });
         } else {
@@ -60,51 +73,44 @@ function getONECALLWeatehr(){
 }
 
 // global parameters used on weather display
-var Wind = "Wind: ";
-var Humidity = "Humidity: ";
-var uvIndex = "UV Index: ";
-var Temperature = "Temp: ";
-var mph = "mph";
-var high = "High ";
-var low = "Low ";
-var persentageIcon = "%";
-var fahrenheit = "°F  ";
 var icon = "http://openweathermap.org/img/wn/";
 
 // function will display the data from the call on the page
-function displayWeather(){
-    //current day display
-    var DisplayCurrent = document.querySelector('.display-today');
-    // create elements
-    var cityNamEl = document.createElement('h3');
-    var iconEl = document.createElement('img');
-    var TemperatureEl = document.createElement('p');
-    var WindEl = document.createElement('p');
-    var HumidityEl = document.createElement('p');
-    var uvIndexEl = document.createElement('p');
-        uvIndexEl.setAttribute('class', 'uvlight');
-    var labeluvIndex = document.createElement('span');
-        labeluvIndex.setAttribute('class', 'badge'); 
+//current day display
+var DisplayCurrent = document.querySelector('.display-today');
+// create elements
+var cityNamEl = document.createElement('h2');
+var iconEl = document.createElement('img');
+var TemperatureEl = document.createElement('p');
+var WindEl = document.createElement('p');
+var HumidityEl = document.createElement('p');
+var uvIndexEl = document.createElement('p');
+    uvIndexEl.setAttribute('class', 'uvlight');
+var labeluvIndex = document.createElement('span');
+    labeluvIndex.setAttribute('class', 'badge'); 
 
-    //display current dataon page
+function displayWeather(){
+    //display current data on page
     // display city name and current date
-    cityNamEl = DisCityName;
+    cityNamEl.textContent = DisCityName + "  " + moment.unix(DataResponse.current.dt).format("M/D/YYYY");
     // display icon        
     iconEl.src = icon + DataResponse.current.weather[0].icon + "@2x.png";
     // display temperature
-    TemperatureEl.textContent = Temperature + DataResponse.current.temp + fahrenheit;
+    TemperatureEl.textContent = "Temp: " + DataResponse.current.temp + "°F ";
     // display wind speed
-    WindEl.textContent = Wind + DataResponse.current.wind_speed + mph;
+    WindEl.textContent = "Wind: " + DataResponse.current.wind_speed + "MPH";
     // display Humidity
-    HumidityEl.textContent = Humidity + DataResponse.current.humidity + persentageIcon;
+    HumidityEl.textContent = "Humidity: " + DataResponse.current.humidity + "%";
     //display uv index
-    uvIndexEl.textContent = uvIndex; // + DataResponse.current.uvi;
+    uvIndexEl.textContent = "UV Index: ";
 
     labeluvIndex.textContent = DataResponse.current.uvi;
     var uvindexcolor = DataResponse.current.uvi;
     // appends to display on page
     DisplayCurrent.append(cityNamEl,iconEl,TemperatureEl,WindEl,HumidityEl,uvIndexEl,labeluvIndex);
     DisplayCurrent.setAttribute("style", "font-size: 18px; font-weight: bold");  
+    cityNamEl.setAttribute("style", "display: inline-block");
+    iconEl.setAttribute("style", "display: inline-block");
     
         if( uvindexcolor < 3){
           labeluvIndex.setAttribute("style", "background-color: green; color: white");
@@ -127,6 +133,11 @@ function display5DayWeather(){
   //display 5 days 
   var weatherpointer = 1;
 
+  // remove previous 5-day displayed from previous call
+  while(Columfor5days.lastChild){
+    Columfor5days.removeChild(Columfor5days.lastChild);
+  }
+
   // display the columns and information
   for(var i = 0 ; i < 5; i++){
     // create the div col to create one of the columns
@@ -134,37 +145,31 @@ function display5DayWeather(){
     columTOdis.setAttribute('class', 'col card');
   
     // create the elemnts to add to the columns
-    var datetoDis = document.createElement('h3');
-    var iconEl = document.createElement('img');
+    var datetoDis = document.createElement('h4');
+    var iconEl2 = document.createElement('img');
     var info = document.createElement('ul');
-    var TemperatureEl = document.createElement('li');
-    var TemperatureHEl = document.createElement('li');
-    var TemperatureLEl = document.createElement('li');
-    var WindEl = document.createElement('li');
-    var HumidityEl = document.createElement('li');
+    var TemperatureEl2 = document.createElement('li');
+    var WindEl2 = document.createElement('li');
+    var HumidityEl2 = document.createElement('li');
 
     // display date
-    datetoDis = "monday";
+    datetoDis.textContent = moment.unix(DataResponse.daily[weatherpointer].dt).format("M/D/YYYY");
     // display icon        
-    iconEl.src = icon + DataResponse.daily[weatherpointer].weather[0].icon + "@2x.png";
+    iconEl2.src = icon + DataResponse.daily[weatherpointer].weather[0].icon + "@2x.png";
     // display temperature
-    TemperatureEl.textContent = Temperature;
-    // TemperatureHEl.textContent = temp + fahrenheit + temp2 + fahrenheit;
-    TemperatureHEl.textContent = high + DataResponse.daily[weatherpointer].temp.max + fahrenheit;
-    TemperatureLEl.textContent = low + DataResponse.daily[weatherpointer].temp.min + fahrenheit;
+    TemperatureEl2.textContent = "Temp: " + DataResponse.daily[weatherpointer].temp.day + "°F ";
     // display wind speed
-    WindEl.textContent = Wind + DataResponse.daily[weatherpointer].wind_speed + mph;
+    WindEl2.textContent = "Wind: " + DataResponse.daily[weatherpointer].wind_speed + " MPH";
     // display Humidity
-    HumidityEl.textContent = Humidity + DataResponse.daily[weatherpointer].humidity + persentageIcon;
+    HumidityEl2.textContent = "Humidity: " + DataResponse.daily[weatherpointer].humidity + "%";
 
     // appends to display on page
-    info.append(TemperatureEl,TemperatureHEl,TemperatureLEl,WindEl,HumidityEl);
+    info.append(TemperatureEl2,WindEl2,HumidityEl2);
 
-      info.setAttribute("style", "font-size: 13px");
-      TemperatureHEl.setAttribute("style", "font-size: 12px; font-weight: bold");
-      TemperatureLEl.setAttribute("style", "font-size: 12px; font-weight: bold");
-      
-      columTOdis.append(datetoDis,iconEl,info);
+      info.setAttribute("style", "font-size: 14px");
+      datetoDis.setAttribute("style", "font-size: 18px; margin-top: 5px");
+
+      columTOdis.append(datetoDis,iconEl2,info);
       columTOdis.setAttribute("style", "margin-right: 20px");
 
       Columfor5days.append(columTOdis);

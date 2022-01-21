@@ -2,12 +2,17 @@
     font-family:'Lucida Sans', 'Lucida Grande', Verdana, sans-serif;
 } */
 
+.submitBTN{
+    background-color: #00b7ff;
+    width: 100px;
+}
+
 .card {
     background-color: #b4dcdd;
-    color: black;
-    border: #5e02a8 solid 2px;
+    color: white;
+    border: #060607 solid 2px;
     margin-right: 30px;
-    background:linear-gradient(to right, #c15dfa , #c872fa , #cf84fa , #d592fc ,#d9a0fa );
+    background:linear-gradient(to right, #04003d , #07015c , #0a027e , #0f03b4 ,#1102e4 );
 }
 
 .results{
@@ -46,7 +51,7 @@ h4{
 }
 
 .badge{
-    width: 50px;
+    width: 60px;
     display: inline-block;
     font-size: 18px;
     margin-left: 10px;
