@@ -72,7 +72,7 @@ function checkHIST (){
 
 //function will get latitude and longitude of the location searched by user
 function getLocation(){
-    fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + openWeatherAPI)
+    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + openWeatherAPI)
     
       .then(function(response){
         if (response.ok){
@@ -114,7 +114,7 @@ function getONECALLWeatehr(latitude, longitude){
 }
 
 // global parameters used on weather display
-var icon = "http://openweathermap.org/img/wn/";
+var icon = "https://openweathermap.org/img/wn/";
 
 // function will display the data from the call on the page
 //current day display
