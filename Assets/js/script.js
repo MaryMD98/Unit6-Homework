@@ -11,6 +11,7 @@ var DisCityName;
 
 //event listener when city is inputted
 var inputAdre = document.querySelector('#locationInput');
+// event listener for submit button
 inputAdre.addEventListener('submit', function(event){
   event.preventDefault();
 
@@ -24,8 +25,21 @@ inputAdre.addEventListener('submit', function(event){
 var HistoryDisplay = document.querySelector('.HistDisplay');
 //display user search history on page
 function DisplayUserHIs(){
-  
+  //remove existing search history displaied to displayed new one
+  while(Columfor5days.lastChild){
+    Columfor5days.removeChild(Columfor5days.lastChild);
+  }
 }
+
+//event listner for the search history
+HistoryDisplay.addEventListener('click', function(event){
+  event.preventDefault();
+
+  if(event.target.classList.contains('btn')){
+    cityName = event.target.textContent;
+    getLocation();
+  }
+});
 
 //function will get latitude and longitude of the location searched by user
 function getLocation(){
