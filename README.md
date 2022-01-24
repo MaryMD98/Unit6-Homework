@@ -1,23 +1,22 @@
-# Homework unit Four:
-# Coding Quiz Challenge
+# Homework Unit Six:
+# Weather Dashboard
 
 ## Description of the homework:
 
-In this homework, I created a coding Quiz using homeworks and miniprojects from the Bootcamp activities that I have done so far. 
+In this homework, I created a weather dashboard application using [OpenWeather One Call API](https://openweathermap.org/api/one-call-api). This application  displays current weather and forecasts weather for the next 5 days of a city chosen by the user. The user search history is saved and displayed on the side of the page for easy access to search again.  
 
-The page displays a start button to begin the quiz. Once the start button is pressed, the first question is displayed and a timer starts, if the timer gets to 0 the quiz is done. This quiz contains 5 questions with 4 multpiple choice answers. 
-After responding each question, a new question is dsplayed. Once all questions are answered, a new screen loads to display the total score and a textbox to enter the users Initial. when submited. a new page display to show the highest score.
-This page has two buttoms, one to start the game and the other to reset the scores and start the gme again. 
+The page displays a search button below the text box to input the city to be searched. After the button is pressed, the current weather will be displayed on the right side of the page. The forecast of the next 5 days will be displayed on the bottom right of the page. The user search history is saved on the localStorage and is displayed on the left side of the page for easy access if user wants to search again.  
 
-### Link to application [HERE](https://marymd98.github.io/Unit4-Homework/)
+
+### Link to application [HERE](https://marymd98.github.io/Unit6-Homework/)
 
 ## Screenshot  of Coding Quiz Challenge:
 Below are screenshots of the Quiz Challenge 
 
-![image one of quiz screenshot](./Assets/pictures/quiz1.png)
-![image two of quiz screenshot](./Assets/pictures/quiz2.png)
-![image three of quiz screenshot](./Assets/pictures/quiz3.png)
-![image four of quiz screenshot](./Assets/pictures/quiz4.png)
+![image one of weather dashboard screenshot](./Assets/pictures/Screenshot1.png)
+
+![image two of weather dashboard screenshot](./Assets/pictures/Screenshot2.png)
+
 
 
 

@@ -156,9 +156,9 @@ function displayWeather(){
         if( uvindexcolor < 3){
           labeluvIndex.setAttribute("style", "background-color: green; color: white");
         } else if( uvindexcolor <= 5){
-          labeluvIndex.setAttribute("style", "background-color: yellow");
+          labeluvIndex.setAttribute("style", "background-color: yellow; color: black");
         } else if( uvindexcolor <= 7){
-          labeluvIndex.setAttribute("style", "background-color: orange"); 
+          labeluvIndex.setAttribute("style", "background-color: orange; color: black"); 
         } else if( uvindexcolor <= 10){
           labeluvIndex.setAttribute("style", "background-color: red; color: white"); 
         } else {
