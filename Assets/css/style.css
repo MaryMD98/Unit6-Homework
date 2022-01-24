@@ -73,7 +73,9 @@ label{
 
 hr{
     margin-left: 10px;
-    width:100%;
+    /* width:100%; */
+    margin-bottom: 6px;
+    width: 225px;
 }
 
 input {
@@ -83,5 +85,10 @@ input {
 header {
     background:linear-gradient(to right, #2c39c7, #3846c0, #3c4491, #1a2479,#010a55 );
     text-align: center;
+    color: white;
+}
+
+.btn:hover{
+    background-color: #5959f5;
     color: white;
 }

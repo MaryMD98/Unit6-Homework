@@ -209,6 +209,7 @@ function display5DayWeather(){
 
       info.setAttribute("style", "font-size: 14px");
       datetoDis.setAttribute("style", "font-size: 18px; margin-top: 5px");
+      iconEl2.setAttribute("style","width: 50%");
 
       columTOdis.append(datetoDis,iconEl2,info);
       columTOdis.setAttribute("style", "margin-right: 20px");
