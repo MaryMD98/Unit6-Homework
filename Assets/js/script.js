@@ -19,15 +19,27 @@ inputAdre.addEventListener('submit', function(event){
     cityName = event.target.elements[0].value;
     event.target.elements[0].value = '';
     getLocation();
+    checkHIST();
   }
 });
 
 var HistoryDisplay = document.querySelector('.HistDisplay');
 //display user search history on page
 function DisplayUserHIs(){
+  // get the history saved in the local storage
+  var checkHistory = JSON.parse(localStorage.getItem("userHistory"));
+
   //remove existing search history displaied to displayed new one
-  while(Columfor5days.lastChild){
-    Columfor5days.removeChild(Columfor5days.lastChild);
+  while(HistoryDisplay.lastChild){
+    HistoryDisplay.removeChild(HistoryDisplay.lastChild);
+  }
+
+  // display the history stored
+  for(var i = 0; i < checkHistory.length; i++){
+    var displayHISBTN = document.createElement('button');
+    displayHISBTN.setAttribute('class', 'btn btn-secondary');
+    displayHISBTN.textContent = checkHistory[i];
+    HistoryDisplay.append(displayHISBTN);
   }
 }
 
@@ -41,6 +53,23 @@ HistoryDisplay.addEventListener('click', function(event){
   }
 });
 
+// check if new search is already on the localStorage
+function checkHIST (){
+   // check if the input data has been used before
+   if(!UserSearchHistory.includes(cityName)){ // locationResponse[0].name
+    //check if there are more than 5 searches
+      if(UserSearchHistory.length === 10){
+        UserSearchHistory.shift();
+      }
+      //save the new search on user search history
+      UserSearchHistory.push(cityName);  //locationResponse[0].name
+
+      //save search to local history transform to string
+      localStorage.setItem("userHistory",JSON.stringify(UserSearchHistory));
+      DisplayUserHIs();
+  }
+}
+
 //function will get latitude and longitude of the location searched by user
 function getLocation(){
     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=' + openWeatherAPI)
@@ -52,23 +81,9 @@ function getLocation(){
             .then(function(data) {
               // save data to global parameter to use in other function
               locationResponse = data;
-              // check if the input data has been used before
-              if(!UserSearchHistory.includes(locationResponse[0].name)){
-                //check if there are more than 5 searches
-                  if(UserSearchHistory.lenght === 5){
-                    UserSearchHistory.shift();
-                  }
-                  //save the new search on user search history
-                  UserSearchHistory.push(locationResponse[0].name);
-
-                  //save search to local history transform to string
-                  localStorage.setItem("userHistory",JSON.stringify(UserSearchHistory));
-
-                  // save lat and lon to use in next call
-                  DisCityName = locationResponse[0].name;
-                  getONECALLWeatehr(locationResponse[0].lat , locationResponse[0].lon );
-                  DisplayUserHIs();
-              }
+              // save lat and lon to use in next call
+              DisCityName = locationResponse[0].name;
+              getONECALLWeatehr(locationResponse[0].lat , locationResponse[0].lon );
           });
         } else {
           console.log("ERROR: Location submited is not correct. Please try again");
@@ -135,7 +150,7 @@ function displayWeather(){
     // appends to display on page
     DisplayCurrent.append(cityNamEl,iconEl,TemperatureEl,WindEl,HumidityEl,uvIndexEl,labeluvIndex);
     DisplayCurrent.setAttribute("style", "font-size: 18px; font-weight: bold");  
-    cityNamEl.setAttribute("style", "display: inline-block");
+    cityNamEl.setAttribute("style", "display: inline-block; font-weight: bold ");
     iconEl.setAttribute("style", "display: inline-block");
     
         if( uvindexcolor < 3){
